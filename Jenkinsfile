@@ -21,19 +21,20 @@ pipeline {
 
     }
   }
-    stage('Publish') {
-      steps {
-        script {
-          docker.withRegistry('', 'dockerhub-id') {
-            docker.image("${registry}:${env.BUILD_ID}").push('latest')
-          }
+
+  stage('Publish') {
+    steps {
+      script {
+        docker.withRegistry('', 'dockerhub-id') {
+          docker.image("${registry}:${env.BUILD_ID}").push('latest')
         }
-
       }
-    }
 
+    }
   }
-  environment {
-    registry = 'maximmro/flask-test-app'
-  }
+
+}
+environment {
+  registry = 'maximmro/flask-test-app'
+}
 }
