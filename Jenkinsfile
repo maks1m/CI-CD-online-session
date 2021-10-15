@@ -23,4 +23,7 @@ pipeline {
     }
 
   }
+  environment {
+    registry = 'maximmro/flask-test-app'
+  }
 }
