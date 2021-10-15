@@ -29,7 +29,7 @@ pipeline {
         sh "sleep 5; curl -i http://localhost:9005/test_string"
       }
     }
-
+    }
   }
       
   stage('Publish') {
