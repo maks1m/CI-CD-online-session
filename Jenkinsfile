@@ -22,29 +22,30 @@ pipeline {
     }
   }
 
-    stage('http-test') {
+  stage('http-test') {
     steps {
       script {
         docker.image("${registry}:${env.BUILD_ID}").withRun('-p 9005:9000') {c ->
         sh "sleep 5; curl -i http://localhost:9005/test_string"
       }
     }
-    }
-  }
-      
-  stage('Publish') {
-    steps {
-      script {
-        docker.withRegistry('', 'dockerhub-id') {
-          docker.image("${registry}:${env.BUILD_ID}").push('latest')
-        }
-      }
 
-    }
   }
+}
+
+stage('Publish') {
+  steps {
+    script {
+      docker.withRegistry('', 'dockerhub-id') {
+        docker.image("${registry}:${env.BUILD_ID}").push('latest')
+      }
+    }
+
+  }
+}
 
 }
 environment {
-  registry = 'maximmro/flask-test-app'
+registry = 'maximmro/flask-test-app'
 }
 }
