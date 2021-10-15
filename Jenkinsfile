@@ -50,6 +50,12 @@ stage('Deploy') {
   }
 }
 
+stage('Validate') {
+  steps {
+    sh 'curl localhost:9000/abc'
+  }
+}
+
 }
 environment {
 registry = 'maximmro/flask-test-app'
