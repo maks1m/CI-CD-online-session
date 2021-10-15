@@ -44,6 +44,12 @@ stage('Publish') {
   }
 }
 
+stage('Deploy') {
+  steps {
+    sh 'docker stop flask-test-app || true; docker run -d --name flask-test-app -p 9000:9000 maximmro/flask-test-app:latest'
+  }
+}
+
 }
 environment {
 registry = 'maximmro/flask-test-app'
