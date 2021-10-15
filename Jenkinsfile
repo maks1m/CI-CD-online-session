@@ -46,7 +46,7 @@ stage('Publish') {
 
 stage('Deploy') {
   steps {
-    sh 'docker stop flask-test-app || docker rm flask-test-app; true; docker run -d --name flask-test-app -p 9000:9000 maximmro/flask-test-app:latest'
+    sh 'docker stop flask-test-app || true; docker rm flask-test-app; true; docker run -d --name flask-test-app -p 9000:9000 maximmro/flask-test-app:latest'
   }
 }
 
